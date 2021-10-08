@@ -8,9 +8,7 @@ use App\Http\Controllers\staff_personal_detail_controller;
 use App\Http\Controllers\staff_bank_details_controller;
 use App\Http\Controllers\staff_employment_detail_controller;
 use App\Http\Controllers\staff_cat_controller;
-
-use App\Models\staff_personal_detail;
-use App\Models\staff_employment_details;
+use App\Http\Controllers\studentController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,11 +52,14 @@ Route::get('/staff_employment_document/{name}',[staff_employment_document_contro
 Route::resource('staff_cat',staff_cat_controller::class);
 Route::get('/staff_cat/{name}',[staff_cat_controller::class,'search']);
 
-Route::get('/staff_employment_details/latic', [staff_employment_detail_controller::class, 'latic']);
+Route::resource('student',studentController::class);
+Route::get('student',[studentController::class,'search']);
+
+//Route::get('/staff_employment_details/latic', [staff_employment_detail_controller::class, 'join']);
 // Route::post('/staff_personal_detail',[staff_personal_detail_controller::class,'store']);
 
 
-//Route::get('/staff_personal_detail', [staff_personal_detail_controller::class, 'index']);
+Route::get('/staff_personal_detail', [staff_personal_detail_controller::class, 'join']);
 //Route::prefix('/staff_personal_detail')->group( function(){
     //Route::post('/store',[staff_personal_detail_controller::class,'store']);
     //Route::put('/{id}',[staff_personal_detail_controller::class,'update']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\staff_personal_detail;
 use App\Models\staff_employment_details;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class staff_personal_detail_controller extends Controller
@@ -96,5 +97,14 @@ class staff_personal_detail_controller extends Controller
     public function search($name)
     {
         return staff_personal_detail::where('name','like','%'.$name.'%')->get();
+    }
+
+    public function join()
+    {
+        $result = DB::table('staff_personal_details')
+        ->join('staff_employment_details','staff_personal_details.id','=','staff_employment_details.staff_id')
+        ->select('staff_personal_details.*','staff_employment_details.position')
+        ->get();
+        return $result;
     }
 }

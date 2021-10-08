@@ -83,6 +83,6 @@ class staff_qualification_controller extends Controller
      */
     public function destroy($id)
     {
-        return staff_qualification::find($id);    
+        return staff_qualification::destroy($id);    
     }
 }
